@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Temu with Arewa</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fbeaec;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            padding: 20px;
+        }
+        header img {
+            width: 150px;
+        }
+        h1 {
+            color: #b76e79;
+            font-size: 32px;
+        }
+        nav {
+            margin: 20px;
+        }
+        nav a {
+            background-color: #e8cfcf;
+            color: #4a4a4a;
+            padding: 12px 20px;
+            margin: 5px;
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        section {
+            padding: 20px;
+        }
+        .login-buttons button, .products-buttons button {
+            margin: 10px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #d8a7b1;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        input[type="password"], input[type="text"], textarea {
+            padding: 10px;
+            width: 80%;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .form-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="content://com.android.providers.media.documents/document/image%3A1000015648" alt="Arewa Shop Logo">
+        <h1>Temu with Arewa</h1>
+    </header>
+
+    <nav>
+        <a href="#home">الرئيسية</a>
+        <a href="#products">المنتجات</a>
+        <a href="#contact">التواصل</a>
+    </nav>
+
+    <section id="home">
+        <h2>تسجيل الدخول</h2>
+        <div class="login-buttons">
+            <button onclick="alert('قيد التطوير: تسجيل دخول Google')">تسجيل دخول Google</button>
+            <button onclick="alert('قيد التطوير: تسجيل دخول Facebook')">تسجيل دخول Facebook</button>
+            <button onclick="alert('قيد التطوير: تسجيل جديد')">تسجيل دخول جديد</button>
+        </div>
+        <br>
+        <button onclick="showAdminLogin()">دخول الإدارة</button>
+    </section>
+
+    <section id="admin-login" class="hidden">
+        <h2>رمز دخول الإدارة</h2>
+        <input type="password" id="admin-code" placeholder="أدخل الكود">
+        <br>
+        <button onclick="checkCode()">دخول</button>
+    </section>
+
+    <section id="admin-panel" class="hidden">
+        <h2>إضافة منتج جديد</h2>
+        <div class="form-section">
+            <input type="text" placeholder="اسم المنتج">
+            <br>
+            <input type="text" placeholder="رابط الصورة">
+            <br>
+            <textarea placeholder="وصف المنتج"></textarea>
+            <br>
+            <button>إضافة المنتج (تجريبي)</button>
+        </div>
+    </section>
+
+    <section id="products" class="hidden">
+        <h2>أقسام المنتجات</h2>
+        <div class="products-buttons">
+            <button>إكسسوارات</button>
+            <button>ملابس</button>
+            <button>مواد التجميل</button>
+            <button>إلكترونيات</button>
+        </div>
+    </section>
+
+    <section id="contact" class="hidden">
+        <h2>معلومات التواصل</h2>
+        <p>واتساب: 0123456789</p>
+        <p>فيسبوك: facebook.com/arewa</p>
+        <p>إيميل: arewa@example.com</p>
+    </section>
+
+    <script>
+        function showAdminLogin() {
+            document.getElementById('admin-login').classList.remove('hidden');
+        }
+
+        function checkCode() {
+            var code = document.getElementById('admin-code').value;
+            if (code === "H19082006a..") {
+                document.getElementById('admin-login').classList.add('hidden');
+                document.getElementById('admin-panel').classList.remove('hidden');
+            } else {
+                alert("fack you");
+            }
+        }
+
+        // التنقل بين الصفحات بشكل بسيط
+        const links = document.querySelectorAll("nav a");
+        links.forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefaudocument.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+                const target = link.getAttribute("href").substring(1);
+                document.getElementById(target).classList.remove("hidden");
+            });
+        });
+    </script>
+
+</body>
+</html>
